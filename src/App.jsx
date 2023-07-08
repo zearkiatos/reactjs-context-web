@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import "./App.css";
 import BodyContainer from "./components/BodyContainer";
+import ColorContext from "./context/colorContext";
 
 function App() {
-  const [color, setColor] = useState("Red 🟥");
+  const [color, setColor] = useState("red");
+  const name = "Pedro";
+  const contextValue = { color, name };
   return (
-    <div className="App">
-      <BodyContainer />
-      <button onClick={() => setColor("Red 🟥")}>Red</button>
-      <button onClick={() => setColor("Green 🟩")}>Green</button>
-    </div>
+    <ColorContext.Provider value={contextValue}>
+      <div className="App">
+        <BodyContainer />
+        <button onClick={() => setColor("red")}>Red</button>
+        <button onClick={() => setColor("green")}>Green</button>
+      </div>
+    </ColorContext.Provider>
   );
 }
 
